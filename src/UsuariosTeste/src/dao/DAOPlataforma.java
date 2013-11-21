@@ -42,25 +42,21 @@ public class DAOPlataforma {
      */
     public Plataforma recuperarPlataformaPorId(int id) throws SQLException, ClassNotFoundException {
 
-        ResultSet resultado = null;
-        Plataforma plataforma = null;
-
         if (id == 0) {
             return null;
         }
 
-        ServicoConexao servicoConexao = new ServicoConexao();
+        Plataforma plataforma = null;
 
-        resultado = servicoConexao.executarQuery("SELECT * FROM PLATAFORMA WHERE id = " + id);
+        ServicoConexao servicoConexao = new ServicoConexao();
+        ResultSet resultado = servicoConexao.executarQuery("SELECT * FROM PLATAFORMA WHERE id = " + id);
 
         if (resultado.next()) {
             String nome = resultado.getString("nome");
-
             plataforma = new Plataforma(id, nome);
         }
 
         servicoConexao.fecharConexaoBancoDeDados();
-
         return plataforma;
     }
 

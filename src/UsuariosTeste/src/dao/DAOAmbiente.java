@@ -44,16 +44,14 @@ public class DAOAmbiente {
      */
     public Ambiente recuperarAmbientePorId(int id) throws SQLException, ClassNotFoundException {
 
-        ResultSet resultado = null;
-        Ambiente ambiente = null;
-
         if (id == 0) {
             return null;
         }
 
-        ServicoConexao servicoConexao = new ServicoConexao();
+        Ambiente ambiente = null;
 
-        resultado = servicoConexao.executarQuery("SELECT * FROM AMBIENTE WHERE id = " + id);
+        ServicoConexao servicoConexao = new ServicoConexao();
+        ResultSet resultado = servicoConexao.executarQuery("SELECT * FROM AMBIENTE WHERE id = " + id);
 
         if (resultado.next()) {
             String nome = resultado.getString("nome");
@@ -102,7 +100,7 @@ public class DAOAmbiente {
         }
 
         ServicoConexao servicoConexao = new ServicoConexao();
-        servicoConexao.executarUpdate("UPDATE AMBIENTE SET nome = '" + ambiente.getNome() + "' idAmbiente = "
+        servicoConexao.executarUpdate("UPDATE AMBIENTE SET nome = '" + ambiente.getNome() + "', idAmbiente = "
                 + ambiente.getPlataforma().getId() + " WHERE id = " + ambiente.getId());
 
         servicoConexao.fecharConexaoBancoDeDados();

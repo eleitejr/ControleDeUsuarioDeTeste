@@ -44,14 +44,13 @@ public class DAOGrupo {
      */
     public Grupo recuperarGrupoPorId(int id) throws SQLException, ClassNotFoundException {
 
-        Grupo grupo = null;
-
         if (id == 0) {
             return null;
         }
 
-        ServicoConexao servicoConexao = new ServicoConexao();
+        Grupo grupo = null;
 
+        ServicoConexao servicoConexao = new ServicoConexao();
         ResultSet resultado = servicoConexao.executarQuery("SELECT * FROM GRUPO WHERE id = " + id);
 
         if (resultado.next()) {
@@ -59,7 +58,6 @@ public class DAOGrupo {
             String nome = resultado.getString("nome");
 
             Ambiente ambiente = new DAOAmbiente().recuperarAmbientePorId(resultado.getInt("idAmbiente"));
-
             Set<Usuario> usuarios = new HashSet<Usuario>();
 
             resultado = servicoConexao
@@ -176,5 +174,4 @@ public class DAOGrupo {
         servicoConexao.fecharConexaoBancoDeDados();
         return gruposDoAmbiente;
     }
-
 }

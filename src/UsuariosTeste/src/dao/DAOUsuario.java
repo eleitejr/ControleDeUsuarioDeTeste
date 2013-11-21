@@ -25,6 +25,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import entidades.Grupo;
+import entidades.Requisicao;
 import entidades.Usuario;
 
 /**
@@ -34,41 +35,40 @@ import entidades.Usuario;
 public class DAOUsuario {
 
     public Usuario recuperarUsuarioPorId(int id) throws SQLException, ClassNotFoundException {
-        ResultSet resultado = null;
-        Usuario usuario = null;
-
-        String nome = null, senha = null, email = null;
-        boolean emUso = false, ativo = false, bloqueado = false, expirado = false;
-        Set<Grupo> grupos = new HashSet<Grupo>();
 
         // Se a id for igual a 0 (id inválida), encerra o método imediatamente, retornando null.
         if (id == 0) {
             return null;
         }
 
+        Usuario usuario = null;
+
         // Tenta se conectar ao banco de dados, e executar a consulta ao banco de dados que retornará o usuário cuja id é passada
         // como parâmetro.
         ServicoConexao servicoConexao = new ServicoConexao();
-        resultado = servicoConexao.executarQuery("SELECT * FROM USUARIO WHERE id = " + id);
+        ResultSet resultado = servicoConexao.executarQuery("SELECT * FROM USUARIO WHERE id = " + id);
 
         // Se o resultado retornou uma consulta, joga esses dados no objeto usuario.
         if (resultado.next()) {
-            nome = resultado.getString("nome");
-            senha = resultado.getString("senha");
-            email = resultado.getString("email");
-            emUso = "S".equalsIgnoreCase(resultado.getString("em_uso"));
-            ativo = "S".equalsIgnoreCase(resultado.getString("ativo"));
-            bloqueado = "S".equalsIgnoreCase(resultado.getString("bloqueado"));
-            expirado = "S".equalsIgnoreCase(resultado.getString("expirado"));
+            String nome = resultado.getString("nome");
+            String senha = resultado.getString("senha");
+            String email = resultado.getString("email");
+            boolean emUso = "S".equalsIgnoreCase(resultado.getString("em_uso"));
+            boolean ativo = "S".equalsIgnoreCase(resultado.getString("ativo"));
+            boolean bloqueado = "S".equalsIgnoreCase(resultado.getString("bloqueado"));
+            boolean expirado = "S".equalsIgnoreCase(resultado.getString("expirado"));
+
+            Set<Grupo> grupos = new HashSet<Grupo>();
+
+            resultado = servicoConexao.executarQuery("SELECT * FROM USUARIO_GRUPO WHERE idUsuario = " + id);
+
+            while (resultado.next()) {
+                Grupo grupo = new DAOGrupo().recuperarGrupoPorId(resultado.getInt("id"));
+                grupos.add(grupo);
+            }
+
+            usuario = new Usuario(id, nome, senha, email, emUso, ativo, bloqueado, expirado, grupos);
         }
-
-        resultado = servicoConexao.executarQuery("SELECT * FROM USUARIO_GRUPO WHERE idUsuario = " + id);
-
-        if (resultado.next()) {
-
-        }
-
-        usuario = new Usuario(id, nome, senha, email, emUso, ativo, bloqueado, expirado, grupos);
 
         servicoConexao.fecharConexaoBancoDeDados();
         return usuario;
@@ -135,9 +135,9 @@ public class DAOUsuario {
         // Tenta abrir uma conexao com o banco de dados e executar uma seleção no banco de dados que deve alterar os dados do
         // usuário.
         ServicoConexao servicoConexao = new ServicoConexao();
-        servicoConexao.executarUpdate("UPDATE USUARIO SET nome = '" + usuario.getNome() + "' + senha = '" + usuario.getSenha()
-                + "' email = '" + usuario.getEmail() + "'  emUso = '" + (usuario.isEmUso() ? "S" : "N") + "' ativo = '"
-                + (usuario.isAtivo() ? "S" : "N") + "' bloqueado = '" + (usuario.isBloqueado() ? "S" : "N") + "' expirado = '"
+        servicoConexao.executarUpdate("UPDATE USUARIO SET nome = '" + usuario.getNome() + "', senha = '" + usuario.getSenha()
+                + "', email = '" + usuario.getEmail() + "', em_uso = '" + (usuario.isEmUso() ? "S" : "N") + "', ativo = '"
+                + (usuario.isAtivo() ? "S" : "N") + "', bloqueado = '" + (usuario.isBloqueado() ? "S" : "N") + "', expirado = '"
                 + (usuario.isExpirado() ? "S" : "N") + "' WHERE id = " + usuario.getId());
 
         servicoConexao.fecharConexaoBancoDeDados();
@@ -178,6 +178,13 @@ public class DAOUsuario {
 
         for (Grupo grupo : usuario.getGrupos()) {
             retirarUsuarioDoGrupo(grupo, usuario);
+        }
+
+        DAORequisicao daoRequisicao = new DAORequisicao();
+        Set<Requisicao> requisicoesDoUsuario = daoRequisicao.recuperarRequisicoesDoUsuario(usuario);
+
+        for (Requisicao requisicao : requisicoesDoUsuario) {
+            daoRequisicao.excluirRequisicao(requisicao);
         }
 
         ServicoConexao servicoConexao = new ServicoConexao();

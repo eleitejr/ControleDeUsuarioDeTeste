@@ -55,8 +55,7 @@ public class ServicoConexao {
     }
 
     /**
-     * Altera o valor da variável que informa o estado da conexão ao banco de
-     * dados.
+     * Altera o valor da variável que informa o estado da conexão ao banco de dados.
      * 
      * @param valor
      */
@@ -92,8 +91,7 @@ public class ServicoConexao {
     /**
      * Tenta se conectar ao banco de dados.
      * 
-     * @return a conexão criada. Retorna null caso não tenha sido possível
-     *         criá-la.
+     * @return a conexão criada. Retorna null caso não tenha sido possível criá-la.
      * @throws SQLException
      * @throws ClassNotFoundException
      */
@@ -110,8 +108,7 @@ public class ServicoConexao {
     }
 
     /**
-     * Tenta fechar uma conexão de banco de dados. Caso ocorram erros, lança uma
-     * exceção SQLException.
+     * Tenta fechar uma conexão de banco de dados. Caso ocorram erros, lança uma exceção SQLException.
      * 
      * @param conexao
      * @throws SQLException
@@ -121,27 +118,25 @@ public class ServicoConexao {
         // Se não houver conexões ativas, não faz nada.
         if (!isConectadoAoBancoDeDados()) {
             return;
+        }
 
-            // Senão, tenta fechá-la.
-        } else {
+        // Senão, tenta fechá-la.
+        else {
 
-            // Se o autoCommit estiver ativo, apenas fecha a conexão. Do
-            // contrário, executa o commit.
+            // Se o autoCommit estiver ativo, apenas fecha a conexão. Do contrário, executa o commit.
             if (!getConexao().getAutoCommit()) {
                 getConexao().commit();
             }
 
-            // Atualiza o valor do campo static, informando que a conexão não
-            // está mais ativa.
+            // Atualiza o valor do campo static, informando que a conexão não está mais ativa.
             setConectadoAoBancoDeDados(false);
         }
     }
 
     /**
-     * Executa uma query no banco de dados, e cuida para que a conexão esteja
-     * aberta. Não fecha a conexão, sendo de responsabilidade do método
-     * invocador chamar depois o método fecharConexaoBancoDeDados. Retorna o
-     * ResultSet da query executada, ou null caso a query seja nula ou vazia.
+     * Executa uma query no banco de dados, e cuida para que a conexão esteja aberta. Não fecha a conexão, sendo de
+     * responsabilidade do método invocador chamar depois o método fecharConexaoBancoDeDados. Retorna o ResultSet da query
+     * executada, ou null caso a query seja nula ou vazia.
      * 
      * @param query
      * @return
@@ -164,8 +159,8 @@ public class ServicoConexao {
     }
 
     /**
-     * Executa uma sql de update no banco de dados. Retorna 0 caso nenhuma query
-     * seja executada, ou se a sql passada seja nula ou vazia.
+     * Executa uma sql de update no banco de dados. Retorna 0 caso nenhuma query seja executada, ou se a sql passada seja nula ou
+     * vazia.
      * 
      * @param sql
      * @return

@@ -1,97 +1,121 @@
+/**
+ * 					Universidade de Brasília
+ * 					Instituto de Ciências Exatas
+ * 					Departamento de Ciência da Computação
+ * 
+ * 					Engenharia de Software - turma B
+ *  					
+ * 					2º semestre de 2013
+ * 					
+ * 					Alunos:
+ * 					- Felipe Camargos Costa - 10/0100341
+ * 					- Gutemberg Guilherme de Araújo - 11/0120451
+ *                  - Erasmo de Castro Leite Junior - 12/0139855
+ * 
+ * 					Descrição:
+ * 					
+ * 
+ */
+
 package entidades;
 
 import java.util.Set;
 
 public class Usuario {
 
-	private int id;
-	private String nome;
-	private String senha;
-	private String email;
-	private boolean emUso;
-	private boolean ativo;
-	private boolean bloqueado;
-	private boolean expirado;
-	private boolean deletado;
-	private Set<Grupo> grupos;
+    private int id;
+    private String nome;
+    private String senha;
+    private String email;
+    private boolean emUso;
+    private boolean ativo;
+    private boolean bloqueado;
+    private boolean expirado;
+    private Set<Grupo> grupos;
 
-	public int getId() {
-		return id;
-	}
+    public Usuario(int id, String nome, String senha, String email, boolean emUso, boolean ativo, boolean bloqueado,
+            boolean expirado, Set<Grupo> grupos) {
 
-	public void setId(int id) {
-		this.id = id;
-	}
+        setId(id);
+        setNome(nome);
+        setSenha(senha);
+        setEmail(email);
+        setEmUso(emUso);
+        setAtivo(ativo);
+        setBloqueado(bloqueado);
+        setExpirado(expirado);
+        setGrupos(grupos);
+    }
 
-	public String getNome() {
-		return nome;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public String getSenha() {
-		return senha;
-	}
+    public String getNome() {
+        return nome;
+    }
 
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public String getSenha() {
+        return senha;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
 
-	public boolean isEmUso() {
-		return emUso;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public void setEmUso(boolean emUso) {
-		this.emUso = emUso;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public boolean isAtivo() {
-		return ativo;
-	}
+    public boolean isEmUso() {
+        return emUso;
+    }
 
-	public void setAtivo(boolean ativo) {
-		this.ativo = ativo;
-	}
+    public void setEmUso(boolean emUso) {
+        this.emUso = emUso;
+    }
 
-	public boolean isBloqueado() {
-		return bloqueado;
-	}
+    public boolean isAtivo() {
+        return ativo;
+    }
 
-	public void setBloqueado(boolean bloqueado) {
-		this.bloqueado = bloqueado;
-	}
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+    }
 
-	public boolean isExpirado() {
-		return expirado;
-	}
+    public boolean isBloqueado() {
+        return bloqueado;
+    }
 
-	public void setExpirado(boolean expirado) {
-		this.expirado = expirado;
-	}
+    public void setBloqueado(boolean bloqueado) {
+        this.bloqueado = bloqueado;
+    }
 
-	public boolean isDeletado() {
-		return deletado;
-	}
+    public boolean isExpirado() {
+        return expirado;
+    }
 
-	public void setDeletado(boolean deletado) {
-		this.deletado = deletado;
-	}
+    public void setExpirado(boolean expirado) {
+        this.expirado = expirado;
+    }
 
-	public Set<Grupo> getGrupos() {
-		return grupos;
-	}
+    public Set<Grupo> getGrupos() {
+        return grupos;
+    }
 
-	public void setGrupos(Set<Grupo> grupos) {
-		this.grupos = grupos;
-	}
+    public void setGrupos(Set<Grupo> grupos) {
+        this.grupos = grupos;
+    }
 }

@@ -1,41 +1,67 @@
+/**
+ * 					Universidade de Brasília
+ * 					Instituto de Ciências Exatas
+ * 					Departamento de Ciência da Computação
+ * 
+ * 					Engenharia de Software - turma B
+ *  					
+ * 					2º semestre de 2013
+ * 					
+ * 					Alunos:
+ * 					- Felipe Camargos Costa - 10/0100341
+ * 					- Gutemberg Guilherme de Araújo - 11/0120451
+ *                  - Erasmo de Castro Leite Junior - 12/0139855
+ * 
+ * 					Descrição:
+ * 					
+ * 
+ */
+
 package entidades;
 
 public class Requerente {
 
-	private int id;
-	private String matricula;
-	private String nome;
-	private String funcao;
+    private int id;
+    private String matricula;
+    private String nome;
+    private String funcao;
 
-	public int getId() {
-		return id;
-	}
+    public Requerente(int id, String matricula, String nome, String funcao) {
+        setId(id);
+        setMatricula(matricula);
+        setNome(nome);
+        setFuncao(funcao);
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public String getMatricula() {
-		return matricula;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public void setMatricula(String matricula) {
-		this.matricula = matricula;
-	}
+    public String getMatricula() {
+        return matricula;
+    }
 
-	public String getNome() {
-		return nome;
-	}
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
+    }
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+    public String getNome() {
+        return nome;
+    }
 
-	public String getFuncao() {
-		return funcao;
-	}
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
-	public void setFuncao(String funcao) {
-		this.funcao = funcao;
-	}
+    public String getFuncao() {
+        return funcao;
+    }
+
+    public void setFuncao(String funcao) {
+        this.funcao = funcao;
+    }
 }

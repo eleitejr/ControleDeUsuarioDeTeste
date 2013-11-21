@@ -15,7 +15,6 @@ CREATE TABLE USUARIO
 	 ativo char(1) NOT NULL,
 	 bloqueado char(1) NOT NULL,
 	 expirado char(1) NOT NULL,
-	 deletado char(1) NOT NULL,
 	 senha varchar(30) NOT NULL,	 
 	 email varchar(50));
 

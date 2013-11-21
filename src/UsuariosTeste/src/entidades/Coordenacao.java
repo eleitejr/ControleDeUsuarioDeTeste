@@ -1,32 +1,57 @@
+/**
+ * 					Universidade de Brasília
+ * 					Instituto de Ciências Exatas
+ * 					Departamento de Ciência da Computação
+ * 
+ * 					Engenharia de Software - turma B
+ *  					
+ * 					2º semestre de 2013
+ * 					
+ * 					Alunos:
+ * 					- Felipe Camargos Costa - 10/0100341
+ * 					- Gutemberg Guilherme de Araújo - 11/0120451
+ *                  - Erasmo de Castro Leite Junior - 12/0139855
+ * 
+ * 					Descrição:
+ * 					
+ * 
+ */
+
 package entidades;
 
 public class Coordenacao {
 
-	private int id;
-	private String nome;
-	private Requerente requerente;
+    private int id;
+    private String nome;
+    private Requerente requerente;
 
-	public int getId() {
-		return id;
-	}
+    public Coordenacao(int id, String nome, Requerente requerente) {
+        setId(id);
+        setNome(nome);
+        setRequerente(requerente);
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public String getNome() {
-		return nome;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+    public String getNome() {
+        return nome;
+    }
 
-	public Requerente getRequerente() {
-		return requerente;
-	}
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
-	public void setRequerente(Requerente requerente) {
-		this.requerente = requerente;
-	}
+    public Requerente getRequerente() {
+        return requerente;
+    }
+
+    public void setRequerente(Requerente requerente) {
+        this.requerente = requerente;
+    }
 }

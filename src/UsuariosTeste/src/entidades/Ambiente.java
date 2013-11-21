@@ -1,32 +1,57 @@
+/**
+ * 					Universidade de Brasília
+ * 					Instituto de Ciências Exatas
+ * 					Departamento de Ciência da Computação
+ * 
+ * 					Engenharia de Software - turma B
+ *  					
+ * 					2º semestre de 2013
+ * 					
+ * 					Alunos:
+ * 					- Felipe Camargos Costa - 10/0100341
+ * 					- Gutemberg Guilherme de Araújo - 11/0120451
+ *                  - Erasmo de Castro Leite Junior - 12/0139855
+ * 
+ * 					Descrição:
+ * 					
+ * 
+ */
+
 package entidades;
 
 public class Ambiente {
 
-	private int id;
-	private int nome;
-	private Plataforma plataforma;
+    private int id;
+    private String nome;
+    private Plataforma plataforma;
 
-	public int getId() {
-		return id;
-	}
+    public Ambiente(int id, String nome, Plataforma plataforma) {
+        setId(id);
+        setNome(nome);
+        setPlataforma(plataforma);
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public int getNome() {
-		return nome;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public void setNome(int nome) {
-		this.nome = nome;
-	}
+    public String getNome() {
+        return nome;
+    }
 
-	public Plataforma getPlataforma() {
-		return plataforma;
-	}
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
-	public void setPlataforma(Plataforma plataforma) {
-		this.plataforma = plataforma;
-	}
+    public Plataforma getPlataforma() {
+        return plataforma;
+    }
+
+    public void setPlataforma(Plataforma plataforma) {
+        this.plataforma = plataforma;
+    }
 }

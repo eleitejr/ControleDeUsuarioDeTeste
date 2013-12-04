@@ -13,8 +13,7 @@
  *                  - Erasmo de Castro Leite Junior - 12/0139855
  * 
  *                  Descrição:
- *                  
- * 
+ *                  Se comunica com o banco de dados e faz a interface do objeto Grupo com a tabela GRUPO no banco de dados.
  */
 
 package dao;
@@ -30,7 +29,6 @@ import entidades.Usuario;
 
 /**
  * Se comunica com o banco de dados e faz a interface do objeto Grupo com a tabela GRUPO no banco de dados.
- * 
  */
 public class DAOGrupo {
 
@@ -116,6 +114,14 @@ public class DAOGrupo {
         servicoConexao.fecharConexaoBancoDeDados();
     }
 
+    /**
+     * Recupera todos os grupos associadoas ao usuário informado.
+     * 
+     * @param usuario
+     * @return
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     */
     public Set<Grupo> recuperarGruposDoUsuario(Usuario usuario) throws ClassNotFoundException, SQLException {
 
         if (usuario == null) {
@@ -138,6 +144,13 @@ public class DAOGrupo {
         return gruposDoUsuario;
     }
 
+    /**
+     * Exclui o grupo informado.
+     * 
+     * @param grupo
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public void excluirGrupo(Grupo grupo) throws SQLException, ClassNotFoundException {
 
         if (grupo == null) {
@@ -155,6 +168,14 @@ public class DAOGrupo {
         servicoConexao.fecharConexaoBancoDeDados();
     }
 
+    /**
+     * Recupera todos os grupos associados ao ambiente informado.
+     * 
+     * @param ambiente
+     * @return
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     */
     public Set<Grupo> recuperarGruposDoAmbiente(Ambiente ambiente) throws ClassNotFoundException, SQLException {
 
         Set<Grupo> gruposDoAmbiente = new HashSet<Grupo>();

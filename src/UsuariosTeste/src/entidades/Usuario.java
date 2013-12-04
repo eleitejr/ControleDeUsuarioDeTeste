@@ -13,14 +13,16 @@
  *                  - Erasmo de Castro Leite Junior - 12/0139855
  * 
  * 					Descrição:
- * 					
- * 
+ *                  Classe que modela a entidade Usuário.
  */
 
 package entidades;
 
 import java.util.Set;
 
+/**
+ * Classe que modela a entidade Usuário.
+ */
 public class Usuario {
 
     private int id;
@@ -33,6 +35,19 @@ public class Usuario {
     private boolean expirado;
     private Set<Grupo> grupos;
 
+    /**
+     * Construtor recebe 9 parâmetros que serão usados para ajustar os campos correspondentes do usuário.
+     * 
+     * @param id
+     * @param nome
+     * @param senha
+     * @param email
+     * @param emUso
+     * @param ativo
+     * @param bloqueado
+     * @param expirado
+     * @param grupos
+     */
     public Usuario(int id, String nome, String senha, String email, boolean emUso, boolean ativo, boolean bloqueado,
             boolean expirado, Set<Grupo> grupos) {
 

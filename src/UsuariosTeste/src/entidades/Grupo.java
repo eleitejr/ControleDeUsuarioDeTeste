@@ -13,14 +13,16 @@
  *                  - Erasmo de Castro Leite Junior - 12/0139855
  * 
  * 					Descrição:
- * 					
- * 
+ *                  Classe que modela a entidade Grupo.
  */
 
 package entidades;
 
 import java.util.Set;
 
+/**
+ * Classe que modela a entidade Grupo.
+ */
 public class Grupo {
 
     private int id;
@@ -28,6 +30,14 @@ public class Grupo {
     private Ambiente ambiente;
     private Set<Usuario> usuarios;
 
+    /**
+     * Construtor recebe 4 parâmetros, que serão usados para ajustar os valores dos campos correspondentes do grupo.
+     * 
+     * @param id
+     * @param nome
+     * @param ambiente
+     * @param usuarios
+     */
     public Grupo(int id, String nome, Ambiente ambiente, Set<Usuario> usuarios) {
         setId(id);
         setNome(nome);

@@ -13,18 +13,27 @@
  *                  - Erasmo de Castro Leite Junior - 12/0139855
  * 
  * 					Descrição:
- * 					
- * 
+ *                  Classe que modela a entidade Coordenação.
  */
 
 package entidades;
 
+/**
+ * Classe que modela a entidade Coordenação.
+ */
 public class Coordenacao {
 
     private int id;
     private String nome;
     private Requerente requerente;
 
+    /**
+     * Construtor recebe 3 parâmetros, que serão usados para ajustar os campos correspondentes da coordenação.
+     * 
+     * @param id
+     * @param nome
+     * @param requerente
+     */
     public Coordenacao(int id, String nome, Requerente requerente) {
         setId(id);
         setNome(nome);

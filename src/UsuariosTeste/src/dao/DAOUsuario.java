@@ -13,8 +13,8 @@
  *                  - Erasmo de Castro Leite Junior - 12/0139855
  * 
  *                  Descrição:
- *                  
- * 
+ *                  Classe responsável por realizar a inteface entre objetos da entidade Usuário com seus dados salvos no banco de
+ *                  dados.
  */
 
 package dao;
@@ -29,11 +29,18 @@ import entidades.Requisicao;
 import entidades.Usuario;
 
 /**
- * 
- *
+ * Classe responsável pela interface entre objetos Usuario e a tabela USUARIO no banco de dados.
  */
 public class DAOUsuario {
 
+    /**
+     * Recupera do banco o usuário cujo id é informado.
+     * 
+     * @param id
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public Usuario recuperarUsuarioPorId(int id) throws SQLException, ClassNotFoundException {
 
         // Se a id for igual a 0 (id inválida), encerra o método imediatamente, retornando null.
@@ -60,6 +67,7 @@ public class DAOUsuario {
 
             Set<Grupo> grupos = new HashSet<Grupo>();
 
+            // Busca no banco os grupos do usuário selecionado.
             resultado = servicoConexao.executarQuery("SELECT * FROM USUARIO_GRUPO WHERE idUsuario = " + id);
 
             while (resultado.next()) {
@@ -74,12 +82,21 @@ public class DAOUsuario {
         return usuario;
     }
 
+    /**
+     * Recupera todos os usuários associados ao grupo informado.
+     * 
+     * @param grupo
+     * @return
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     */
     public Set<Usuario> recuperarUsuariosDoGrupo(Grupo grupo) throws ClassNotFoundException, SQLException {
 
         if (grupo == null) {
             return null;
         }
 
+        // Executa a query de seleção com o grupo informado.
         ServicoConexao servicoConexao = new ServicoConexao();
         ResultSet resultado = servicoConexao
                 .executarQuery("SELECT * FROM USUARIO where id = (SELECT idUsuario FROM USUARIO_GRUPO WHERE idGrupo = "
@@ -87,6 +104,7 @@ public class DAOUsuario {
 
         Set<Usuario> usuariosDoGrupo = new HashSet<Usuario>();
 
+        // Adiciona os usuários obtidos no resultado da query ao conjunto usuariosDoGrupo.
         while (resultado.next()) {
             Usuario usuario = recuperarUsuarioPorId(resultado.getInt("id"));
             usuariosDoGrupo.add(usuario);
@@ -110,6 +128,7 @@ public class DAOUsuario {
             return;
         }
 
+        // Executa a query que cria o cadastr do usuário no banco de dados.
         ServicoConexao servicoConexao = new ServicoConexao();
         servicoConexao.executarUpdate("INSERT INTO USUARIO(nome, senha, email, emUso, ativo, bloqueado, expirado) values('"
                 + usuario.getNome() + "', '" + usuario.getSenha() + "', '" + (usuario.isEmUso() ? "S" : "N") + "', '"
@@ -143,12 +162,21 @@ public class DAOUsuario {
         servicoConexao.fecharConexaoBancoDeDados();
     }
 
+    /**
+     * Retira o usuário do grupo informado.
+     * 
+     * @param grupo
+     * @param usuario
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     */
     public void retirarUsuarioDoGrupo(Grupo grupo, Usuario usuario) throws ClassNotFoundException, SQLException {
 
         if ((grupo == null) || (usuario == null)) {
             return;
         }
 
+        // Executa a query de exclusão do usuário no banco de dados.
         ServicoConexao servicoConexao = new ServicoConexao();
         servicoConexao.executarUpdate("DELETE FROM USUARIO_GRUPO WHERE idGrupo = " + grupo.getId() + " AND idUsuario = "
                 + usuario.getId());
@@ -156,12 +184,21 @@ public class DAOUsuario {
         servicoConexao.fecharConexaoBancoDeDados();
     }
 
+    /**
+     * Insere o usuário no grupo informado.
+     * 
+     * @param grupo
+     * @param usuario
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     */
     public void inserirUsuarioNoGrupo(Grupo grupo, Usuario usuario) throws ClassNotFoundException, SQLException {
 
         if ((grupo == null) || (usuario == null)) {
             return;
         }
 
+        // Executa a query de inserção do usuário no grupo, no banco de dados.
         ServicoConexao servicoConexao = new ServicoConexao();
         servicoConexao.executarUpdate("INSERT INTO USUARIO_GRUPO (idGrupo, idUsuario) values (" + grupo.getId() + ", "
                 + usuario.getId() + ")");
@@ -169,6 +206,14 @@ public class DAOUsuario {
         servicoConexao.fecharConexaoBancoDeDados();
     }
 
+    /**
+     * Exclui o usuário informado.
+     * 
+     * @param usuario
+     *            ServicoConexao
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public void excluirUsuario(Usuario usuario) throws SQLException, ClassNotFoundException {
 
         // Se o usuario for null, encerra o método imediatamente.
@@ -176,17 +221,19 @@ public class DAOUsuario {
             return;
         }
 
+        // Retira o usuário de todos os grupos associados.
         for (Grupo grupo : usuario.getGrupos()) {
             retirarUsuarioDoGrupo(grupo, usuario);
         }
 
+        // Exclui todas as requisições do usuário informado.
         DAORequisicao daoRequisicao = new DAORequisicao();
         Set<Requisicao> requisicoesDoUsuario = daoRequisicao.recuperarRequisicoesDoUsuario(usuario);
-
         for (Requisicao requisicao : requisicoesDoUsuario) {
             daoRequisicao.excluirRequisicao(requisicao);
         }
 
+        // Exclui o usuário.
         ServicoConexao servicoConexao = new ServicoConexao();
         servicoConexao.executarUpdate("DELETE FROM USUARIO_WHERE id = " + usuario.getId());
 

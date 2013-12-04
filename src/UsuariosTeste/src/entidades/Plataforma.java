@@ -13,17 +13,25 @@
  *                  - Erasmo de Castro Leite Junior - 12/0139855
  * 
  * 					Descrição:
- * 					
- * 
+ *                  Classe que modela a entidade Plataforma.                  
  */
 
 package entidades;
 
+/**
+ * Classe que modela a entidade Plataforma.
+ */
 public class Plataforma {
 
     private int id;
     private String nome;
 
+    /**
+     * Construtor recebe 2 parâmetros e os usa para ajustar os campos da plataforma.
+     * 
+     * @param id
+     * @param nome
+     */
     public Plataforma(int id, String nome) {
         setId(id);
         setNome(nome);

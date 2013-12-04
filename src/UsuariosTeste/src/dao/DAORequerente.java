@@ -13,8 +13,8 @@
  *                  - Erasmo de Castro Leite Junior - 12/0139855
  * 
  *                  Descrição:
- *                  
- * 
+ *                  Se comunica com o banco de dados e faz a interface do objeto Requerente com a tabela REQUERENTE no banco de
+ *                  dados.
  */
 
 package dao;
@@ -28,7 +28,6 @@ import entidades.Requerente;
 
 /**
  * Se comunica com o banco de dados e faz a interface do objeto Requerente com a tabela REQUERENTE no banco de dados.
- * 
  */
 public class DAORequerente {
 
@@ -104,6 +103,13 @@ public class DAORequerente {
         servicoConexao.fecharConexaoBancoDeDados();
     }
 
+    /**
+     * Exclui o requerente do banco de dados.
+     * 
+     * @param requerente
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public void excluirRequerente(Requerente requerente) throws SQLException, ClassNotFoundException {
 
         if (requerente == null) {

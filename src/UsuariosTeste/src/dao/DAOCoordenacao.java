@@ -13,8 +13,8 @@
  *                  - Erasmo de Castro Leite Junior - 12/0139855
  * 
  *                  Descrição:
- *                  
- * 
+ *                  Se comunica com o banco de dados e faz a interface do objeto Coordenacao com a tabela COORDENACAO no banco de
+ *                  dados.
  */
 
 package dao;
@@ -30,7 +30,6 @@ import entidades.Requisicao;
 
 /**
  * Se comunica com o banco de dados e faz a interface do objeto Coordenacao com a tabela COORDENACAO no banco de dados.
- * 
  */
 public class DAOCoordenacao {
 
@@ -103,6 +102,13 @@ public class DAOCoordenacao {
         servicoConexao.fecharConexaoBancoDeDados();
     }
 
+    /**
+     * Exclui a coordenação informada.
+     * 
+     * @param coordenacao
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public void excluirCoordenacao(Coordenacao coordenacao) throws SQLException, ClassNotFoundException {
 
         if (coordenacao == null) {
@@ -122,6 +128,14 @@ public class DAOCoordenacao {
         servicoConexao.fecharConexaoBancoDeDados();
     }
 
+    /**
+     * Recupera todas as coordenações do requerente informado.
+     * 
+     * @param requerente
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public Set<Coordenacao> recuperarCoordenacoesDoRequerente(Requerente requerente) throws SQLException, ClassNotFoundException {
 
         if (requerente == null) {

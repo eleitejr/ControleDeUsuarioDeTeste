@@ -13,8 +13,8 @@
  *                  - Erasmo de Castro Leite Junior - 12/0139855
  * 
  *                  Descrição:
- *                  
- * 
+ *                  Se comunica com o banco de dados e faz a interface do objeto Plataforma com a tabela PLATAFORMA no banco de
+ *                  dados.
  */
 
 package dao;
@@ -28,7 +28,6 @@ import entidades.Plataforma;
 
 /**
  * Se comunica com o banco de dados e faz a interface do objeto Plataforma com a tabela PLATAFORMA no banco de dados.
- * 
  */
 public class DAOPlataforma {
 
@@ -99,6 +98,13 @@ public class DAOPlataforma {
         servicoConexao.fecharConexaoBancoDeDados();
     }
 
+    /**
+     * Exclui a plataforma informada.
+     * 
+     * @param plataforma
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public void excluirPlataforma(Plataforma plataforma) throws SQLException, ClassNotFoundException {
 
         ServicoConexao servicoConexao = new ServicoConexao();

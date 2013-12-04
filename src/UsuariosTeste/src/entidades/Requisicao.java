@@ -13,21 +13,34 @@
  *                  - Erasmo de Castro Leite Junior - 12/0139855
  * 
  * 					Descrição:
- * 					
- * 
+ *                  Classe que modela a entidade Requisição.
  */
 
 package entidades;
 
 import java.util.Date;
 
+/**
+ * Classe que modela a entidade Requisição.
+ */
 public class Requisicao {
 
+    /** Constante para indicar um evento de criação de usuário. */
     public final String EVENTO_CRIACAO = "CRIACAO";
+
+    /** Constante para indicar um evento de bloqueio de usuário. */
     public final String EVENTO_BLOQUEIO = "EVENTO_BLOQUEIO";
+
+    /** Constante para indicar um evento de troca de senha de usuário. */
     public final String EVENTO_TROCA_DE_SENHA = "TROCA_DE_SENHA";
+
+    /** Constante para indicar um evento de desbloqueio de usuário. */
     public final String EVENTO_DESBLOQUEIO = "DESBLOQUEIO";
+
+    /** Constante para indicar um evento de exclusão de usuário. */
     public final String EVENTO_DELECAO = "DELECAO";
+
+    /** Constante para indicar um evento de envio de e-mail para o usuário. */
     public final String EVENTO_ENVIO_DE_EMAIL = "ENVIO_DE_EMAIL";
 
     private int id;
@@ -37,6 +50,16 @@ public class Requisicao {
     private Coordenacao coordenacao;
     private String evento;
 
+    /**
+     * Construtor recebe 6 parâmetros e os usa para ajustar os campos correspondentes da requisição.
+     * 
+     * @param id
+     * @param data
+     * @param foiExecutada
+     * @param usuario
+     * @param coordenacao
+     * @param evento
+     */
     public Requisicao(int id, Date data, boolean foiExecutada, Usuario usuario, Coordenacao coordenacao, String evento) {
         setId(id);
         setData(data);

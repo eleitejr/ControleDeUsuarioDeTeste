@@ -13,18 +13,27 @@
  *                  - Erasmo de Castro Leite Junior - 12/0139855
  * 
  * 					Descrição:
- * 					
- * 
+ *                  Classe que modela a entidade Ambiente.
  */
 
 package entidades;
 
+/**
+ * Classe que modela a entidade Ambiente.
+ */
 public class Ambiente {
 
     private int id;
     private String nome;
     private Plataforma plataforma;
 
+    /**
+     * Construtor recebe 3 parâmtros, que serão usados para ajustar os campos correspondentes do ambiente.
+     * 
+     * @param id
+     * @param nome
+     * @param plataforma
+     */
     public Ambiente(int id, String nome, Plataforma plataforma) {
         setId(id);
         setNome(nome);

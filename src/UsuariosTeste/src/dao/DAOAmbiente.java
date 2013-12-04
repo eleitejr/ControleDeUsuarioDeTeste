@@ -13,8 +13,8 @@
  *                  - Erasmo de Castro Leite Junior - 12/0139855
  * 
  *                  Descrição:
- *                  
- * 
+ *                  Se comunica com o banco de dados, implementando a interface entre os dados do Ambiente salvos no banco com os
+ *                  objetos da classe Ambiente.
  */
 
 package dao;
@@ -30,7 +30,6 @@ import entidades.Plataforma;
 
 /**
  * Se comunica com o banco de dados e faz a interface do objeto Ambiente com a tabela AMBIENTE no banco de dados.
- * 
  */
 public class DAOAmbiente {
 
@@ -50,9 +49,11 @@ public class DAOAmbiente {
 
         Ambiente ambiente = null;
 
+        // Executa a query SELECT no banco de dados, retornando o ambiente com id desejado.
         ServicoConexao servicoConexao = new ServicoConexao();
         ResultSet resultado = servicoConexao.executarQuery("SELECT * FROM AMBIENTE WHERE id = " + id);
 
+        // Se a query forneceu resultados, constrói o objeto ambiente com os resultados da query.
         if (resultado.next()) {
             String nome = resultado.getString("nome");
 
@@ -62,6 +63,7 @@ public class DAOAmbiente {
             ambiente = new Ambiente(id, nome, plataforma);
         }
 
+        // Fecha a conexão com o banco de dados.
         servicoConexao.fecharConexaoBancoDeDados();
         return ambiente;
     }
@@ -79,10 +81,12 @@ public class DAOAmbiente {
             return;
         }
 
+        // Executa a query que cria o ambiente no banco de dados.
         ServicoConexao servicoConexao = new ServicoConexao();
         servicoConexao.executarUpdate("INSERT INTO AMBIENTE(nome, idPlataforma) values('" + ambiente.getNome() + "', "
                 + ambiente.getPlataforma().getId() + ")");
 
+        // Fecha a conexão com o banco de dados.
         servicoConexao.fecharConexaoBancoDeDados();
     }
 
@@ -99,27 +103,46 @@ public class DAOAmbiente {
             return;
         }
 
+        // Executa a query de alteração do ambiente no banco de dados.
         ServicoConexao servicoConexao = new ServicoConexao();
         servicoConexao.executarUpdate("UPDATE AMBIENTE SET nome = '" + ambiente.getNome() + "', idAmbiente = "
                 + ambiente.getPlataforma().getId() + " WHERE id = " + ambiente.getId());
 
+        // Fecha a conexão com o banco de dados.
         servicoConexao.fecharConexaoBancoDeDados();
     }
 
+    /**
+     * Exclui o ambiente do banco.
+     * 
+     * @param ambiente
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public void excluirAmbiente(Ambiente ambiente) throws SQLException, ClassNotFoundException {
 
         ServicoConexao servicoConexao = new ServicoConexao();
 
+        // Exclui todos os grupos do ambiente antes de excluir o ambiente propriamente dito.
         DAOGrupo daoGrupo = new DAOGrupo();
         Set<Grupo> gruposDoAmbiente = daoGrupo.recuperarGruposDoAmbiente(ambiente);
         for (Grupo grupo : gruposDoAmbiente) {
             daoGrupo.excluirGrupo(grupo);
         }
 
+        // Exclui o ambiente e fecha a conexão com o banco de dados.
         servicoConexao.executarUpdate("DELETE FROM AMBIENTE WHERE id = " + ambiente.getId());
         servicoConexao.fecharConexaoBancoDeDados();
     }
 
+    /**
+     * Recupera todos os ambientes associados à plataforma informada.
+     * 
+     * @param plataforma
+     * @return
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     */
     public Set<Ambiente> recuperarAmbientesDaPlataforma(Plataforma plataforma) throws ClassNotFoundException, SQLException {
 
         Set<Ambiente> ambientesDaPlataforma = new HashSet<Ambiente>();
@@ -128,14 +151,17 @@ public class DAOAmbiente {
             return null;
         }
 
+        // Executa a query de seleção no banco de dados.
         ServicoConexao servicoConexao = new ServicoConexao();
         ResultSet resultado = servicoConexao.executarQuery("SELECT * FROM AMBIENTE WHERE idPlataforma = " + plataforma.getId());
 
+        // Percorre o resultado, construindo objetos ambiente e os inserindo no conjunto ambientesDaPlataforma.
         while (resultado.next()) {
             Ambiente ambiente = new Ambiente(resultado.getInt("id"), resultado.getString("nome"), plataforma);
             ambientesDaPlataforma.add(ambiente);
         }
 
+        // Fecha a conexão com o banco de dados.
         servicoConexao.fecharConexaoBancoDeDados();
         return ambientesDaPlataforma;
     }

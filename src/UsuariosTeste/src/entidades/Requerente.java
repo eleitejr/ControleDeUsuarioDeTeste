@@ -13,12 +13,14 @@
  *                  - Erasmo de Castro Leite Junior - 12/0139855
  * 
  * 					Descrição:
- * 					
- * 
+ *                  Classe que modela a entidade Requerente.
  */
 
 package entidades;
 
+/**
+ * Classe que modela a entidade Requerente.
+ */
 public class Requerente {
 
     private int id;
@@ -26,6 +28,14 @@ public class Requerente {
     private String nome;
     private String funcao;
 
+    /**
+     * Construtor recebe 4 parâmetros, que serão usados para ajustar os valores dos campos correspondentes do requerente.
+     * 
+     * @param id
+     * @param matricula
+     * @param nome
+     * @param funcao
+     */
     public Requerente(int id, String matricula, String nome, String funcao) {
         setId(id);
         setMatricula(matricula);

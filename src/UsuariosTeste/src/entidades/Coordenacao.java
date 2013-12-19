@@ -20,6 +20,8 @@ package entidades;
 
 /**
  * Classe que modela a entidade Coordenação.
+ * 
+ * @author felipe
  */
 public class Coordenacao {
 

@@ -1,14 +1,17 @@
 package controleUsuariosTeste;
 
-import telas.TelaCadastrarUsuario;
+import telas.TelaEscolherRequerente;
 
+/**
+ * Classe principal, contém o método main e dá prosseguimento à execução do programa.
+ * 
+ * @author felipe
+ * 
+ */
 public class ControleUsuariosTeste {
 
-    /**
-     * @param args
-     */
     public static void main(String[] args) {
 
-        TelaCadastrarUsuario telaCadastrarUsuario = new TelaCadastrarUsuario();
+        TelaEscolherRequerente telaEscolherRequerente = new TelaEscolherRequerente();
     }
 }

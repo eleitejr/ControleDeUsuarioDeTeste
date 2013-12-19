@@ -29,7 +29,9 @@ import entidades.Grupo;
 import entidades.Plataforma;
 
 /**
- * Se comunica com o banco de dados e faz a interface do objeto Ambiente com a tabela AMBIENTE no banco de dados.
+ * * Se comunica com o banco de dados e faz a interface do objeto Ambiente com a tabela AMBIENTE no banco de dados.
+ * 
+ * @author felipe
  */
 public class DAOAmbiente {
 

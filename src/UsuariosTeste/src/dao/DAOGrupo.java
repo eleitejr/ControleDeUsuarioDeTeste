@@ -29,6 +29,8 @@ import entidades.Usuario;
 
 /**
  * Se comunica com o banco de dados e faz a interface do objeto Grupo com a tabela GRUPO no banco de dados.
+ * 
+ * @author felipe
  */
 public class DAOGrupo {
 

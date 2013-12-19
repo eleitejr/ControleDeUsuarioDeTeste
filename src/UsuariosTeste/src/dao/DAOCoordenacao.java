@@ -30,6 +30,8 @@ import entidades.Requisicao;
 
 /**
  * Se comunica com o banco de dados e faz a interface do objeto Coordenacao com a tabela COORDENACAO no banco de dados.
+ * 
+ * @author felipe
  */
 public class DAOCoordenacao {
 

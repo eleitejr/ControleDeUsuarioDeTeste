@@ -27,6 +27,7 @@ import entidades.Plataforma;
  * Responsável por controlar a validação dos campos e a interação das telas relativas a plataformas. Se comunica com o
  * DAOPlataforma.
  * 
+ * @author felipe
  * @see dao.DAOPlataforma
  */
 public class CtrPlataforma {

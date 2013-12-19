@@ -31,6 +31,7 @@ import entidades.Usuario;
 /**
  * Se comunica com o banco de dados e faz a interface do objeto Requisicao com a tabela REQUISICAO no banco de dados.
  * 
+ * @author felipe
  */
 public class DAORequisicao {
 

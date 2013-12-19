@@ -30,6 +30,8 @@ import entidades.Usuario;
 
 /**
  * Classe responsável pela interface entre objetos Usuario e a tabela USUARIO no banco de dados.
+ * 
+ * @author felipe
  */
 public class DAOUsuario {
 
@@ -130,10 +132,10 @@ public class DAOUsuario {
 
         // Executa a query que cria o cadastr do usuário no banco de dados.
         ServicoConexao servicoConexao = new ServicoConexao();
-        servicoConexao.executarUpdate("INSERT INTO USUARIO(nome, senha, email, emUso, ativo, bloqueado, expirado) values('"
-                + usuario.getNome() + "', '" + usuario.getSenha() + "', '" + (usuario.isEmUso() ? "S" : "N") + "', '"
-                + (usuario.isAtivo() ? "S" : "N") + "', '" + (usuario.isBloqueado() ? "S" : "N") + "', '"
-                + (usuario.isExpirado() ? "S" : "N") + ")");
+        servicoConexao.executarUpdate("INSERT INTO USUARIO(nome, senha, email, em_uso, ativo, bloqueado, expirado) values('"
+                + usuario.getNome() + "', '" + usuario.getSenha() + "', '" + usuario.getEmail() + "', '"
+                + (usuario.isEmUso() ? "S" : "N") + "', '" + (usuario.isAtivo() ? "S" : "N") + "', '"
+                + (usuario.isBloqueado() ? "S" : "N") + "', '" + (usuario.isExpirado() ? "S" : "N") + "')");
 
         servicoConexao.fecharConexaoBancoDeDados();
     }

@@ -6,3 +6,8 @@ Componentes do Grupo:
     
 Informações Adicionais de instalação/configuração
 
+- Programa JAVA: Deve-se abrir o projeto, preferencialmente no Eclipse, e executar (o projeto já inclui as classes no formato
+compilado.class.
+
+
+

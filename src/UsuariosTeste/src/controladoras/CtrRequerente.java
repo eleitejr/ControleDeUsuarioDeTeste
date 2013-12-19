@@ -19,6 +19,7 @@
 package controladoras;
 
 import java.sql.SQLException;
+import java.util.Set;
 
 import dao.DAORequerente;
 import entidades.Requerente;
@@ -163,6 +164,17 @@ public class CtrRequerente {
      */
     public Requerente recuperarRequerente(int id) throws ClassNotFoundException, SQLException {
         return new DAORequerente().recuperarRequerentePorId(id);
+    }
+
+    /**
+     * Recupera todos os requerentes do banco de dados.
+     * 
+     * @return
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     */
+    public Set<Requerente> recuperarTodosRequerentes() throws ClassNotFoundException, SQLException {
+        return new DAORequerente().recuperarTodosRequerentes();
     }
 
     /**

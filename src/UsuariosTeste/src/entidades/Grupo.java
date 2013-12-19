@@ -22,6 +22,8 @@ import java.util.Set;
 
 /**
  * Classe que modela a entidade Grupo.
+ * 
+ * @author felipe
  */
 public class Grupo {
 

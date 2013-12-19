@@ -28,6 +28,8 @@ import entidades.Plataforma;
 
 /**
  * Se comunica com o banco de dados e faz a interface do objeto Plataforma com a tabela PLATAFORMA no banco de dados.
+ * 
+ * @author felipe
  */
 public class DAOPlataforma {
 

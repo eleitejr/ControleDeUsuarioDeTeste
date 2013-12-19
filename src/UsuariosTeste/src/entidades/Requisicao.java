@@ -22,6 +22,8 @@ import java.util.Date;
 
 /**
  * Classe que modela a entidade Requisição.
+ * 
+ * @author felipe
  */
 public class Requisicao {
 

@@ -20,6 +20,8 @@ package entidades;
 
 /**
  * Classe que modela a entidade Ambiente.
+ * 
+ * @author felipe
  */
 public class Ambiente {
 

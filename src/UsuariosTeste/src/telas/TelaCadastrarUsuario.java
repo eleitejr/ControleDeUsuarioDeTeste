@@ -37,6 +37,7 @@ import entidades.Usuario;
 /**
  * Classe que modela uma tela usada para cadastrar um novo usuário.
  * 
+ * @author felipe
  * @see CtrUsuario
  * @see JFrame
  */

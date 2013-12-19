@@ -21,6 +21,7 @@ package dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashSet;
 import java.util.Set;
 
 import entidades.Coordenacao;
@@ -28,6 +29,8 @@ import entidades.Requerente;
 
 /**
  * Se comunica com o banco de dados e faz a interface do objeto Requerente com a tabela REQUERENTE no banco de dados.
+ * 
+ * @author felipe
  */
 public class DAORequerente {
 
@@ -101,6 +104,30 @@ public class DAORequerente {
                 + requerente.getNome() + "', funcao = '" + requerente.getFuncao() + "' WHERE id = " + requerente.getId());
 
         servicoConexao.fecharConexaoBancoDeDados();
+    }
+
+    /**
+     * Recupera todos os requerentes do banco de dados.
+     * 
+     * @return
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     */
+    public Set<Requerente> recuperarTodosRequerentes() throws ClassNotFoundException, SQLException {
+
+        ServicoConexao servicoConexao = new ServicoConexao();
+        Set<Requerente> todosRequerentes = new HashSet<Requerente>();
+        ResultSet resultado = servicoConexao.executarQuery("SELECT * FROM REQUERENTE");
+
+        while (resultado.next()) {
+            int id = resultado.getInt("id");
+            String matricula = resultado.getString("matricula");
+            String nome = resultado.getString("nome");
+            String funcao = resultado.getString("funcao");
+            todosRequerentes.add(new Requerente(id, matricula, nome, funcao));
+        }
+
+        return todosRequerentes;
     }
 
     /**

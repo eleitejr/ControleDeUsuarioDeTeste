@@ -25,12 +25,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ * Provê os serviços básicos de comunicação com o banco de dados.
+ * 
+ * @author felipe
+ */
 public class ServicoConexao {
 
     private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
     private static final String DATABASE_URL = "jdbc:mysql://localhost/UsuariosTeste";
-    private static String username;
-    private static String password;
+    private static String username = "root";
+    private static String password = "swokowski";
 
     // variável static que informa se uma conexão ao banco está ativa.
     private static boolean conectadoAoBancoDeDados;

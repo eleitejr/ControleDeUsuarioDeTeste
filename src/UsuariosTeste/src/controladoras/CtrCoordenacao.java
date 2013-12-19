@@ -29,6 +29,7 @@ import entidades.Requerente;
  * Responsável por controlar a validação dos campos e a interação das telas relativas a coordenações. Se comunica com o
  * DAOCoordenacao.
  * 
+ * @author felipe
  * @see dao.DAOCoordenacao
  */
 public class CtrCoordenacao {

@@ -20,6 +20,8 @@ package entidades;
 
 /**
  * Classe que modela a entidade Requerente.
+ * 
+ * @author felipe
  */
 public class Requerente {
 

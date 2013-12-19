@@ -20,6 +20,8 @@ package entidades;
 
 /**
  * Classe que modela a entidade Plataforma.
+ * 
+ * @author felipe
  */
 public class Plataforma {
 
